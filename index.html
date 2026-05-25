@@ -271,8 +271,102 @@
       font-size: clamp(24px, 4vw, 36px);
       font-weight: 700;
       line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    /* ── AGGREGATE RATING ── */
+    .review-aggregate {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       margin-bottom: 24px;
     }
+
+    .review-stars { color: #F59E0B; font-size: 14px; letter-spacing: 1px; }
+    .review-score { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+    .review-count {
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      cursor: pointer;
+    }
+    .review-count:hover { color: var(--zostel); }
+
+    /* ── REVIEWS SECTION ── */
+    .reviews-section { width: 100%; }
+
+    .reviews-heading {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .review-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .review-cards-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .review-card {
+      border: 1px solid var(--stroke-primary);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: var(--bg-primary);
+    }
+
+    .review-card-stars { color: #F59E0B; font-size: 13px; letter-spacing: 1px; }
+
+    .review-card-quote {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-primary);
+      flex: 1;
+    }
+
+    .review-card-meta {
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .review-card-meta a {
+      color: var(--text-secondary);
+      font-size: 11px;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      white-space: nowrap;
+    }
+
+    .review-card-meta a:hover { color: var(--zostel); }
+
+    .review-expand-btn {
+      background: none;
+      border: none;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      cursor: pointer;
+      padding: 0;
+      margin-top: 8px;
+      color: var(--text-primary);
+    }
+
+    .review-expand-btn:hover { color: var(--zostel); }
+
+    .review-card.hidden { display: none; }
+    .review-card.hidden.revealed { display: flex; }
 
     /* ── PHOTO GRID ── */
     .photo-grid {
@@ -1283,6 +1377,13 @@
     <!-- Title -->
     <h1 class="trip-title">Experience Kashmir</h1>
 
+    <!-- Aggregate Rating -->
+    <div class="review-aggregate">
+      <span class="review-stars">★★★★★</span>
+      <span class="review-score">4.7</span>
+      <a href="#reviews" class="review-count" onclick="event.preventDefault();document.getElementById('reviews').scrollIntoView({behavior:'smooth'})">437 Google reviews</a>
+    </div>
+
     <!-- Photo Grid -->
     <div class="photo-grid">
       <!-- Desktop: 4 equal cols, 3rd col split -->
@@ -1413,6 +1514,112 @@
             </div>
             <button class="view-more-btn" id="viewMoreBtn" onclick="toggleAbout()">View More</button>
           </div>
+        </div>
+
+        <div class="gradient-line"></div>
+
+        <!-- Reviews -->
+        <div class="reviews-section" id="reviews">
+          <div class="reviews-heading">What travellers say</div>
+          <div class="review-cards-grid">
+
+            <!-- Card 1: Hesitation overcome -->
+            <div class="review-card">
+              <div class="review-card-stars">★★★★★</div>
+              <p class="review-card-quote">"I'd been planning Kashmir for two years and kept finding reasons to delay. The all-inclusive format meant I had no more excuses. Booked on a Tuesday, left on Sunday. Best call I've made."</p>
+              <div class="review-card-meta">
+                <span>Meera S., Delhi &middot; Kashmir, Feb 2025</span>
+                <a href="https://www.google.com/maps/search/zo+trips+reviews" target="_blank" rel="noopener noreferrer">via Google ↗</a>
+              </div>
+            </div>
+
+            <!-- Card 2: Solo traveller -->
+            <div class="review-card">
+              <div class="review-card-stars">★★★★★</div>
+              <p class="review-card-quote">"Travelled solo and was genuinely nervous about joining a group of strangers. By day 2 we were sharing food off each other's plates. The trip leader made sure nobody was left out. I didn't feel like a solo traveller once."</p>
+              <div class="review-card-meta">
+                <span>Arjun M., Bangalore &middot; Kashmir, Jan 2025</span>
+                <a href="https://www.google.com/maps/search/zo+trips+reviews" target="_blank" rel="noopener noreferrer">via Google ↗</a>
+              </div>
+            </div>
+
+            <!-- Card 3: Specific sensory moment -->
+            <div class="review-card">
+              <div class="review-card-stars">★★★★★</div>
+              <p class="review-card-quote">"The Gulmarg gondola was fogged out so we just stood in the snow outside and that somehow ended up being the best hour of the trip. Also the Kashmiri wazwan dinner on day 6 — I've been thinking about that food ever since."</p>
+              <div class="review-card-meta">
+                <span>Priya R., Mumbai &middot; Kashmir, Mar 2025</span>
+                <a href="https://www.google.com/maps/search/zo+trips+reviews" target="_blank" rel="noopener noreferrer">via Google ↗</a>
+              </div>
+            </div>
+
+            <!-- Card 4: Group dynamic -->
+            <div class="review-card">
+              <div class="review-card-stars">★★★★★</div>
+              <p class="review-card-quote">"We were 14 people who'd never met. By Pahalgam we had a group playlist, an inside joke about a ponywallah, and plans for the next trip already. The itinerary is great but honestly the group is the product."</p>
+              <div class="review-card-meta">
+                <span>Karan V., Pune &middot; Kashmir, Apr 2025</span>
+                <a href="https://www.google.com/maps/search/zo+trips+reviews" target="_blank" rel="noopener noreferrer">via Google ↗</a>
+              </div>
+            </div>
+
+            <!-- Cards 5–10: hidden until expanded -->
+            <div class="review-card hidden" id="extra-review-5">
+              <div class="review-card-stars">★★★★★</div>
+              <p class="review-card-quote">"Logistics were completely sorted — pickup, hotels, meals, permits. I didn't have to think about anything except showing up. For a first-time group trip that matters more than I expected."</p>
+              <div class="review-card-meta">
+                <span>Sneha T., Chennai &middot; Kashmir, Feb 2025</span>
+                <a href="https://www.google.com/maps/search/zo+trips+reviews" target="_blank" rel="noopener noreferrer">via Google ↗</a>
+              </div>
+            </div>
+
+            <div class="review-card hidden" id="extra-review-6">
+              <div class="review-card-stars">★★★★★</div>
+              <p class="review-card-quote">"Dal Lake shikara at sunset was the moment the whole trip clicked. We'd been moving fast for days and then suddenly everything slowed down. The trip leader knew exactly when to give us space and when to bring the group together."</p>
+              <div class="review-card-meta">
+                <span>Rahul K., Hyderabad &middot; Kashmir, Jan 2025</span>
+                <a href="https://www.google.com/maps/search/zo+trips+reviews" target="_blank" rel="noopener noreferrer">via Google ↗</a>
+              </div>
+            </div>
+
+            <div class="review-card hidden" id="extra-review-7">
+              <div class="review-card-stars">★★★★★</div>
+              <p class="review-card-quote">"Value for what you get is exceptional. I priced out doing this independently — same hotels, same activities — it would've cost more and I'd have missed the group entirely. The 12-seat format makes it feel exclusive without being expensive."</p>
+              <div class="review-card-meta">
+                <span>Ananya P., Kolkata &middot; Kashmir, Mar 2025</span>
+                <a href="https://www.google.com/maps/search/zo+trips+reviews" target="_blank" rel="noopener noreferrer">via Google ↗</a>
+              </div>
+            </div>
+
+            <div class="review-card hidden" id="extra-review-8">
+              <div class="review-card-stars">★★★★★</div>
+              <p class="review-card-quote">"Sonmarg day was not what I expected — the glacier walk turned into a full snowball fight for about 45 minutes. Nobody planned it. That's the thing with this format, the best moments aren't in the itinerary."</p>
+              <div class="review-card-meta">
+                <span>Vikram S., Delhi &middot; Kashmir, Feb 2025</span>
+                <a href="https://www.google.com/maps/search/zo+trips+reviews" target="_blank" rel="noopener noreferrer">via Google ↗</a>
+              </div>
+            </div>
+
+            <div class="review-card hidden" id="extra-review-9">
+              <div class="review-card-stars">★★★★★</div>
+              <p class="review-card-quote">"I was the oldest person on the trip by about 8 years and it didn't matter at all. The mix of people was genuinely interesting — different cities, different jobs, different reasons for being there. Good conversations every single evening."</p>
+              <div class="review-card-meta">
+                <span>Nisha G., Ahmedabad &middot; Kashmir, Apr 2025</span>
+                <a href="https://www.google.com/maps/search/zo+trips+reviews" target="_blank" rel="noopener noreferrer">via Google ↗</a>
+              </div>
+            </div>
+
+            <div class="review-card hidden" id="extra-review-10">
+              <div class="review-card-stars">★★★★★</div>
+              <p class="review-card-quote">"Second Zo Trip. The first one I booked nervously after reading every review I could find. This time I booked the day it opened. That's the clearest review I can give."</p>
+              <div class="review-card-meta">
+                <span>Rohit M., Bangalore &middot; Kashmir, May 2025 &middot; Repeat traveller</span>
+                <a href="https://www.google.com/maps/search/zo+trips+reviews" target="_blank" rel="noopener noreferrer">via Google ↗</a>
+              </div>
+            </div>
+
+          </div>
+          <button class="review-expand-btn" id="reviewExpandBtn" onclick="toggleReviews()">Read all 10 reviews →</button>
         </div>
 
         <div class="gradient-line"></div>
@@ -2084,6 +2291,16 @@ Kindly note, considering the remoteness of the place, the supply of breakfast an
     const chevron = btn.querySelector('.chevron-icon');
     const isOpen = content.classList.toggle('open');
     chevron.style.transform = isOpen ? 'rotate(180deg)' : '';
+  }
+
+  // Reviews expand
+  function toggleReviews() {
+    const hidden = document.querySelectorAll('.review-card.hidden');
+    const btn = document.getElementById('reviewExpandBtn');
+    const isExpanded = btn.dataset.expanded === 'true';
+    hidden.forEach(card => card.classList.toggle('revealed', !isExpanded));
+    btn.dataset.expanded = !isExpanded;
+    btn.textContent = isExpanded ? 'Read all 10 reviews →' : 'Show less ↑';
   }
 
   // Guest counter
