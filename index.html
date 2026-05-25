@@ -654,8 +654,11 @@
         bottom: auto; left: auto; right: auto;
         width: 384px;
         flex-shrink: 0;
-        height: fit-content;
+        max-height: calc(100vh - 32px);
+        overflow-y: auto;
+        scrollbar-width: none;
       }
+      .right-col::-webkit-scrollbar { display: none; }
     }
 
     .booking-card {
