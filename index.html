@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experience Kashmir | Zo Trips</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #e63329;
+      --dark: #1a1a1a;
+      --gray: #6b7280;
+      --light-gray: #f5f5f5;
+      --border: #e5e7eb;
+      --white: #ffffff;
+      --green: #16a34a;
+      --yellow: #f59e0b;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 64px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--red);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -1px;
+    }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-text span { color: var(--red); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray);
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--dark); }
+
+    .nav-cta {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 9px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all .2s;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--dark);
+    }
+
+    .btn-outline:hover { border-color: var(--dark); }
+
+    .btn-primary {
+      background: var(--red);
+      color: white;
+    }
+
+    .btn-primary:hover { background: #c72920; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 520px;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 4px;
+      height: 100%;
+    }
+
+    .hero-img {
+      background: #ccc center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-img:first-child {
+      grid-row: 1 / 3;
+    }
+
+    .hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Gradient fallback for images */
+    .hero-img-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .hero-img-2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+    .hero-img-3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+    .hero-img-4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+    .hero-img-5 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+
+    /* Kashmir scene SVG placeholders */
+    .scene-label {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      background: rgba(0,0,0,.5);
+      color: white;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
+    }
+
+    .show-all-btn {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      padding: 14px 40px;
+      background: var(--light-gray);
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    .breadcrumb a { color: var(--red); }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* ── MAIN LAYOUT ── */
+    .page-body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 40px 80px;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* ── TRIP HEADER ── */
+    .trip-header { margin-bottom: 28px; }
+
+    .trip-tags {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .tag-red { background: #fef2f2; color: var(--red); }
+    .tag-blue { background: #eff6ff; color: #2563eb; }
+    .tag-green { background: #f0fdf4; color: var(--green); }
+    .tag-purple { background: #faf5ff; color: #7c3aed; }
+
+    .trip-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .trip-meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    .trip-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .trip-meta-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--dark);
+      font-weight: 600;
+    }
+
+    .stars { color: var(--yellow); letter-spacing: 2px; }
+
+    /* ── QUICK STATS ── */
+    .quick-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 36px;
+    }
+
+    .stat-box {
+      background: white;
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .stat-icon {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: var(--gray);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .stat-sub {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 2px;
+    }
+
+    /* ── SECTION ── */
+    .section { margin-bottom: 44px; }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--light-gray);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── HIGHLIGHTS ── */
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .highlight-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      background: var(--light-gray);
+      border-radius: 12px;
+    }
+
+    .highlight-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+    }
+
+    .highlight-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+    .highlight-card p { font-size: 13px; color: var(--gray); line-height: 1.4; }
+
+    /* ── ITINERARY ── */
+    .itinerary { position: relative; }
+
+    .day-card {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0;
+      margin-bottom: 0;
+    }
+
+    .day-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 4px;
+    }
+
+    .day-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--red);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      flex-shrink: 0;
+      letter-spacing: .3px;
+      line-height: 1.1;
+      text-align: center;
+    }
+
+    .day-line {
+      width: 2px;
+      flex: 1;
+      background: var(--border);
+      margin: 8px 0;
+    }
+
+    .day-card:last-child .day-line { display: none; }
+
+    .day-content {
+      padding: 0 0 36px 0;
+    }
+
+    .day-content h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .day-location {
+      font-size: 12px;
+      color: var(--red);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .day-description {
+      font-size: 14px;
+      color: #374151;
+      line-height: 1.65;
+      margin-bottom: 12px;
+    }
+
+    .day-activities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .activity-pill {
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--dark);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ── INCLUSIONS ── */
+    .inc-exc {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .inc-box, .exc-box {
+      background: var(--light-gray);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .inc-box h4 { color: var(--green); margin-bottom: 14px; font-size: 15px; display: flex; align-items: center; gap: 6px; }
+    .exc-box h4 { color: #dc2626; margin-bottom: 14px; font-size: 15px; display: flex; align-items: center; gap: 6px; }
+
+    .inc-list, .exc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .inc-list li, .exc-list li {
+      font-size: 13.5px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.5;
+    }
+
+    .inc-list li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .exc-list li::before { content: '✕'; color: #dc2626; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── PLACES ── */
+    .places-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .place-card {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      height: 160px;
+      cursor: pointer;
+    }
+
+    .place-bg {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+    }
+
+    .place-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.7) 0%, rgba(0,0,0,.1) 60%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 14px;
+      color: white;
+    }
+
+    .place-overlay h4 { font-size: 15px; font-weight: 700; }
+    .place-overlay p { font-size: 12px; opacity: .85; }
+
+    /* ── REVIEWS ── */
+    .reviews-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--light-gray);
+    }
+
+    .reviews-summary {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 24px;
+      padding: 20px;
+      background: var(--light-gray);
+      border-radius: 12px;
+    }
+
+    .big-rating {
+      text-align: center;
+    }
+
+    .big-rating .score {
+      font-size: 56px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--dark);
+    }
+
+    .big-rating .out-of { font-size: 13px; color: var(--gray); }
+
+    .rating-bars { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+
+    .rating-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .rating-row .label { width: 80px; color: var(--gray); }
+
+    .bar-bg {
+      flex: 1;
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: var(--yellow);
+      border-radius: 3px;
+    }
+
+    .rating-row .pct { width: 30px; font-weight: 600; color: var(--dark); }
+
+    .review-cards { display: flex; flex-direction: column; gap: 20px; }
+
+    .review-card {
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .reviewer-name { font-weight: 600; font-size: 14px; }
+    .reviewer-date { font-size: 12px; color: var(--gray); margin-top: 2px; }
+
+    .review-stars { color: var(--yellow); font-size: 14px; margin-bottom: 8px; }
+
+    .review-text { font-size: 14px; color: #374151; line-height: 1.6; }
+
+    /* ── BOOKING CARD ── */
+    .booking-card {
+      position: sticky;
+      top: 84px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,.08);
+    }
+
+    .booking-card-header {
+      background: var(--red);
+      color: white;
+      padding: 20px 24px;
+    }
+
+    .batch-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      opacity: .8;
+      margin-bottom: 6px;
+    }
+
+    .batch-dates {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .batch-nights {
+      font-size: 13px;
+      opacity: .85;
+      margin-top: 4px;
+    }
+
+    .seats-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      background: rgba(255,255,255,.15);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+
+    .seats-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4ade80;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .4; }
+    }
+
+    .booking-body { padding: 20px 24px; }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+
+    .price-label { font-size: 13px; color: var(--gray); }
+
+    .price-original {
+      font-size: 14px;
+      color: var(--gray);
+      text-decoration: line-through;
+    }
+
+    .price-current {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .price-per { font-size: 13px; color: var(--gray); font-weight: 400; }
+
+    .price-savings {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #f0fdf4;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+
+    .cost-breakdown { margin-bottom: 20px; }
+    .cost-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13.5px;
+      margin-bottom: 8px;
+      color: #374151;
+    }
+
+    .cost-row.total {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--dark);
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+
+    .book-btn {
+      width: 100%;
+      background: var(--red);
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s;
+      margin-bottom: 12px;
+    }
+
+    .book-btn:hover { background: #c72920; }
+
+    .book-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .inquiry-btn {
+      width: 100%;
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--dark);
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: border-color .2s;
+    }
+
+    .inquiry-btn:hover { border-color: var(--dark); }
+
+    .features-list {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #374151;
+    }
+
+    .feature-icon { font-size: 16px; }
+
+    /* ── POLICIES ── */
+    .policy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .policy-card {
+      background: var(--light-gray);
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .policy-icon { font-size: 28px; margin-bottom: 10px; }
+    .policy-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+    .policy-card p { font-size: 12px; color: var(--gray); line-height: 1.5; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: #9ca3af;
+      padding: 40px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    footer a { color: #9ca3af; }
+    footer .footer-logo { color: white; font-weight: 700; font-size: 18px; margin-bottom: 12px; }
+
+    /* ── STICKY MOBILE BAR ── */
+    .mobile-bar {
+      display: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .page-body {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 32px;
+      }
+      .booking-card { position: static; }
+      .quick-stats { grid-template-columns: repeat(2, 1fr); }
+      .highlights-grid { grid-template-columns: 1fr; }
+      .inc-exc { grid-template-columns: 1fr; }
+      .places-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 160px; }
+      .hero-img:first-child { grid-row: auto; }
+      .hero { height: auto; }
+      .trip-title { font-size: 26px; }
+      .policy-grid { grid-template-columns: 1fr; }
+      .mobile-bar {
+        display: flex;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        background: white;
+        border-top: 1px solid var(--border);
+        padding: 12px 20px;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 99;
+        box-shadow: 0 -4px 16px rgba(0,0,0,.08);
+      }
+      .mobile-price { font-size: 22px; font-weight: 700; }
+      .mobile-price span { font-size: 13px; font-weight: 400; color: var(--gray); }
+      body { padding-bottom: 72px; }
+    }
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+
+    /* Tab nav */
+    .tab-nav {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 0;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all .2s;
+    }
+
+    .tab-btn.active {
+      color: var(--red);
+      border-bottom-color: var(--red);
+    }
+
+    .tab-btn:hover:not(.active) { color: var(--dark); }
+
+    .tabs-wrap { margin-bottom: 36px; }
+
+    /* Notice banner */
+    .notice-banner {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 13.5px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 28px;
+    }
+
+    .notice-banner span:first-child { font-size: 18px; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-mark">Z</div>
+    <div class="logo-text">Zo<span>stel</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Hostels</a></li>
+    <li><a href="#">Zo Trips</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <div class="nav-cta">
+    <button class="btn btn-outline">Log in</button>
+    <button class="btn btn-primary">Sign up</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid">
+    <!-- Main image -->
+    <div class="hero-img hero-img-1" style="background: linear-gradient(160deg,#1a3a5c 0%,#2d6a9f 50%,#4a9fd4 100%); display:flex; align-items:center; justify-content:center;">
+      <svg viewBox="0 0 600 500" style="width:100%;height:100%;position:absolute;inset:0;" preserveAspectRatio="xMidYMid slice">
+        <!-- Sky -->
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0d2d4f"/>
+            <stop offset="100%" stop-color="#4a9fd4"/>
+          </linearGradient>
+          <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1e6ea8"/>
+            <stop offset="100%" stop-color="#0a3d62"/>
+          </linearGradient>
+          <linearGradient id="snow" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="100%" stop-color="#c5d9e8"/>
+          </linearGradient>
+        </defs>
+        <rect width="600" height="500" fill="url(#sky)"/>
+        <!-- Mountains back -->
+        <polygon points="0,280 80,160 160,200 240,120 320,170 400,90 480,150 560,100 600,140 600,290 0,290" fill="#1a3a5c"/>
+        <!-- Snow caps -->
+        <polygon points="240,120 260,145 220,145" fill="url(#snow)"/>
+        <polygon points="400,90 420,118 380,118" fill="url(#snow)"/>
+        <polygon points="560,100 578,124 542,124" fill="url(#snow)"/>
+        <polygon points="80,160 100,180 60,180" fill="url(#snow)"/>
+        <!-- Mountains front -->
+        <polygon points="0,320 100,200 200,250 300,180 400,230 500,170 600,220 600,340 0,340" fill="#0f2535"/>
+        <!-- Dal Lake water -->
+        <rect x="0" y="320" width="600" height="180" fill="url(#water)"/>
+        <!-- Water reflections -->
+        <ellipse cx="200" cy="380" rx="120" ry="10" fill="rgba(255,255,255,0.06)"/>
+        <ellipse cx="450" cy="420" rx="80" ry="8" fill="rgba(255,255,255,0.05)"/>
+        <!-- Houseboats -->
+        <rect x="60" y="340" width="120" height="40" rx="4" fill="#5c3d1e"/>
+        <rect x="60" y="330" width="120" height="16" rx="2" fill="#8b5e3c"/>
+        <rect x="75" y="317" width="90" height="18" rx="3" fill="#a0704a"/>
+        <!-- Windows on houseboat -->
+        <rect x="72" y="345" width="14" height="10" rx="2" fill="#f0c87a" opacity="0.9"/>
+        <rect x="95" y="345" width="14" height="10" rx="2" fill="#f0c87a" opacity="0.9"/>
+        <rect x="118" y="345" width="14" height="10" rx="2" fill="#f0c87a" opacity="0.9"/>
+        <rect x="141" y="345" width="14" height="10" rx="2" fill="#f0c87a" opacity="0.9"/>
+        <!-- Second houseboat -->
+        <rect x="400" y="350" width="100" height="36" rx="4" fill="#4a3018"/>
+        <rect x="400" y="341" width="100" height="14" rx="2" fill="#7a5230"/>
+        <rect x="414" y="330" width="74" height="16" rx="3" fill="#8b6040"/>
+        <rect x="412" y="354" width="12" height="9" rx="2" fill="#f0c87a" opacity="0.8"/>
+        <rect x="432" y="354" width="12" height="9" rx="2" fill="#f0c87a" opacity="0.8"/>
+        <rect x="452" y="354" width="12" height="9" rx="2" fill="#f0c87a" opacity="0.8"/>
+        <!-- Shikara boat -->
+        <ellipse cx="280" cy="390" rx="50" ry="12" fill="#2a4a1e"/>
+        <path d="M240,388 Q280,378 320,388" stroke="#1a3a10" stroke-width="2" fill="none"/>
+        <!-- Person in shikara -->
+        <circle cx="270" cy="378" r="5" fill="#f4a261"/>
+        <rect x="266" y="383" width="8" height="12" rx="2" fill="#e63329"/>
+        <!-- Reflection of mountains -->
+        <polygon points="0,340 100,390 200,365 300,395 400,375 500,400 600,370 600,420 0,420" fill="rgba(0,0,0,0.2)"/>
+        <!-- Stars / dots -->
+        <circle cx="50" cy="30" r="1.5" fill="white" opacity="0.8"/>
+        <circle cx="150" cy="20" r="1" fill="white" opacity="0.6"/>
+        <circle cx="300" cy="15" r="1.5" fill="white" opacity="0.7"/>
+        <circle cx="480" cy="25" r="1" fill="white" opacity="0.5"/>
+        <circle cx="540" cy="10" r="1.5" fill="white" opacity="0.8"/>
+        <circle cx="420" cy="40" r="1" fill="white" opacity="0.6"/>
+        <!-- Moon -->
+        <circle cx="500" cy="50" r="22" fill="#fffde7" opacity="0.9"/>
+        <circle cx="512" cy="44" r="18" fill="#0d2d4f"/>
+        <!-- Lotus flowers -->
+        <ellipse cx="330" cy="418" rx="8" ry="5" fill="#f48fb1" opacity="0.8"/>
+        <ellipse cx="348" cy="422" rx="7" ry="4" fill="#f06292" opacity="0.8"/>
+        <ellipse cx="365" cy="415" rx="8" ry="5" fill="#f48fb1" opacity="0.7"/>
+      </svg>
+      <div class="scene-label">Dal Lake, Srinagar</div>
+    </div>
+
+    <!-- Top right 1 -->
+    <div class="hero-img hero-img-2" style="background:#1b4f2a; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+      <svg viewBox="0 0 300 250" style="width:100%;height:100%;position:absolute;" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="meadowSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#87ceeb"/>
+            <stop offset="100%" stop-color="#b8e4f9"/>
+          </linearGradient>
+        </defs>
+        <rect width="300" height="250" fill="url(#meadowSky)"/>
+        <!-- Mountains -->
+        <polygon points="0,160 60,80 120,120 180,60 240,100 300,70 300,170 0,170" fill="#2d5a1b"/>
+        <polygon points="180,60 200,85 160,85" fill="white"/>
+        <polygon points="240,100 256,120 224,120" fill="white"/>
+        <!-- Green meadow -->
+        <rect x="0" y="160" width="300" height="90" fill="#3a7d1e"/>
+        <!-- Flowers -->
+        <circle cx="40" cy="175" r="4" fill="#ffeb3b"/>
+        <circle cx="80" cy="180" r="3" fill="#ff80ab"/>
+        <circle cx="140" cy="172" r="4" fill="#ffeb3b"/>
+        <circle cx="200" cy="178" r="3" fill="#ff80ab"/>
+        <circle cx="260" cy="174" r="4" fill="#fff176"/>
+        <!-- Tent -->
+        <polygon points="130,155 160,120 190,155" fill="#e63329"/>
+        <rect x="140" y="145" width="20" height="10" fill="#c72920"/>
+        <!-- Pine trees -->
+        <polygon points="30,160 45,120 60,160" fill="#1b5e20"/>
+        <polygon points="30,148 45,110 60,148" fill="#2e7d32"/>
+        <polygon points="230,160 245,118 260,160" fill="#1b5e20"/>
+        <polygon points="230,148 245,108 260,148" fill="#2e7d32"/>
+      </svg>
+      <div class="scene-label">Sonamarg Meadows</div>
+    </div>
+
+    <!-- Top right 2 -->
+    <div class="hero-img hero-img-3" style="background:#0a2744; overflow:hidden;">
+      <svg viewBox="0 0 300 250" style="width:100%;height:100%;position:absolute;" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="sunriseSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0a2744"/>
+            <stop offset="50%" stop-color="#c0392b"/>
+            <stop offset="100%" stop-color="#e67e22"/>
+          </linearGradient>
+        </defs>
+        <rect width="300" height="250" fill="url(#sunriseSky)"/>
+        <!-- Sun -->
+        <circle cx="150" cy="120" r="35" fill="#f39c12" opacity="0.9"/>
+        <circle cx="150" cy="120" r="25" fill="#f1c40f"/>
+        <!-- Snow mountains silhouette -->
+        <polygon points="0,180 50,100 100,140 150,80 200,120 250,90 300,110 300,200 0,200" fill="#1a1a2e"/>
+        <!-- Snow -->
+        <polygon points="150,80 165,100 135,100" fill="#ecf0f1"/>
+        <polygon points="50,100 62,117 38,117" fill="#ecf0f1"/>
+        <!-- Foreground -->
+        <rect x="0" y="190" width="300" height="60" fill="#0d1117"/>
+        <!-- Gulmarg cable car hint -->
+        <line x1="50" y1="150" x2="250" y2="110" stroke="#555" stroke-width="1.5"/>
+        <rect x="130" y="125" width="16" height="12" rx="3" fill="#e74c3c"/>
+        <line x1="138" y1="125" x2="138" y2="118" stroke="#555" stroke-width="1.5"/>
+        <!-- Stars -->
+        <circle cx="20" cy="20" r="1.5" fill="white" opacity="0.7"/>
+        <circle cx="80" cy="15" r="1" fill="white" opacity="0.5"/>
+        <circle cx="200" cy="25" r="1.5" fill="white" opacity="0.6"/>
+        <circle cx="270" cy="10" r="1" fill="white" opacity="0.7"/>
+      </svg>
+      <div class="scene-label">Gulmarg — Asia's Highest Gondola</div>
+    </div>
+
+    <!-- Bottom right 1 -->
+    <div class="hero-img hero-img-4" style="background:#1a3a5c; overflow:hidden;">
+      <svg viewBox="0 0 300 250" style="width:100%;height:100%;position:absolute;" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#d4a5ff"/>
+            <stop offset="100%" stop-color="#7c3aed"/>
+          </linearGradient>
+        </defs>
+        <!-- Tulip garden -->
+        <rect width="300" height="250" fill="#7db28a"/>
+        <!-- Sky band -->
+        <rect width="300" height="100" fill="#b4d8f0"/>
+        <!-- Mountain -->
+        <polygon points="0,100 80,40 160,80 240,20 300,60 300,110 0,110" fill="#2d5016"/>
+        <polygon points="240,20 258,46 222,46" fill="white"/>
+        <!-- Tulip rows -->
+        <rect x="0" y="108" width="300" height="142" fill="#4a7c3f"/>
+        <!-- Row 1 - Red -->
+        <g fill="#e63329">
+          <ellipse cx="20" cy="122" rx="8" ry="12"/>
+          <ellipse cx="45" cy="118" rx="8" ry="12"/>
+          <ellipse cx="70" cy="125" rx="8" ry="12"/>
+          <ellipse cx="95" cy="120" rx="8" ry="12"/>
+          <ellipse cx="120" cy="123" rx="8" ry="12"/>
+          <ellipse cx="145" cy="117" rx="8" ry="12"/>
+          <ellipse cx="170" cy="124" rx="8" ry="12"/>
+          <ellipse cx="195" cy="119" rx="8" ry="12"/>
+          <ellipse cx="220" cy="122" rx="8" ry="12"/>
+          <ellipse cx="245" cy="118" rx="8" ry="12"/>
+          <ellipse cx="270" cy="124" rx="8" ry="12"/>
+          <ellipse cx="295" cy="120" rx="8" ry="12"/>
+        </g>
+        <!-- Row 2 - Yellow -->
+        <g fill="#fbbf24">
+          <ellipse cx="30" cy="148" rx="8" ry="12"/>
+          <ellipse cx="55" cy="143" rx="8" ry="12"/>
+          <ellipse cx="80" cy="150" rx="8" ry="12"/>
+          <ellipse cx="105" cy="145" rx="8" ry="12"/>
+          <ellipse cx="130" cy="149" rx="8" ry="12"/>
+          <ellipse cx="155" cy="142" rx="8" ry="12"/>
+          <ellipse cx="180" cy="150" rx="8" ry="12"/>
+          <ellipse cx="205" cy="145" rx="8" ry="12"/>
+          <ellipse cx="230" cy="148" rx="8" ry="12"/>
+          <ellipse cx="255" cy="143" rx="8" ry="12"/>
+          <ellipse cx="280" cy="150" rx="8" ry="12"/>
+        </g>
+        <!-- Row 3 - Pink -->
+        <g fill="#f472b6">
+          <ellipse cx="20" cy="174" rx="8" ry="12"/>
+          <ellipse cx="45" cy="168" rx="8" ry="12"/>
+          <ellipse cx="70" cy="176" rx="8" ry="12"/>
+          <ellipse cx="95" cy="170" rx="8" ry="12"/>
+          <ellipse cx="120" cy="174" rx="8" ry="12"/>
+          <ellipse cx="145" cy="167" rx="8" ry="12"/>
+          <ellipse cx="170" cy="175" rx="8" ry="12"/>
+          <ellipse cx="195" cy="170" rx="8" ry="12"/>
+          <ellipse cx="220" cy="174" rx="8" ry="12"/>
+          <ellipse cx="245" cy="168" rx="8" ry="12"/>
+          <ellipse cx="270" cy="175" rx="8" ry="12"/>
+          <ellipse cx="295" cy="170" rx="8" ry="12"/>
+        </g>
+        <!-- Row 4 - Purple -->
+        <g fill="#a855f7">
+          <ellipse cx="30" cy="200" rx="8" ry="12"/>
+          <ellipse cx="60" cy="196" rx="8" ry="12"/>
+          <ellipse cx="90" cy="202" rx="8" ry="12"/>
+          <ellipse cx="120" cy="197" rx="8" ry="12"/>
+          <ellipse cx="150" cy="201" rx="8" ry="12"/>
+          <ellipse cx="180" cy="196" rx="8" ry="12"/>
+          <ellipse cx="210" cy="202" rx="8" ry="12"/>
+          <ellipse cx="240" cy="197" rx="8" ry="12"/>
+          <ellipse cx="270" cy="201" rx="8" ry="12"/>
+          <ellipse cx="296" cy="197" rx="8" ry="12"/>
+        </g>
+      </svg>
+      <div class="scene-label">Indira Gandhi Tulip Garden</div>
+    </div>
+
+    <!-- Bottom right 2 -->
+    <div class="hero-img hero-img-5" style="background:#1c3a2e; overflow:hidden;">
+      <svg viewBox="0 0 300 250" style="width:100%;height:100%;position:absolute;" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="riverSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#87ceeb"/>
+            <stop offset="60%" stop-color="#c8e6c9"/>
+            <stop offset="100%" stop-color="#2e7d32"/>
+          </linearGradient>
+        </defs>
+        <rect width="300" height="250" fill="url(#riverSky)"/>
+        <!-- Mountains -->
+        <polygon points="0,140 60,60 120,100 180,40 240,80 300,50 300,150 0,150" fill="#1b5e20"/>
+        <polygon points="180,40 198,65 162,65" fill="#ecf0f1"/>
+        <!-- Pine forest -->
+        <g fill="#2e7d32">
+          <polygon points="10,150 22,120 34,150"/>
+          <polygon points="25,150 37,115 49,150"/>
+          <polygon points="250,150 262,118 274,150"/>
+          <polygon points="265,150 277,112 289,150"/>
+          <polygon points="280,150 292,122 304,150"/>
+        </g>
+        <!-- River / Lidder -->
+        <path d="M0,220 Q75,200 150,215 Q225,230 300,210 L300,250 L0,250Z" fill="#4fc3f7" opacity="0.85"/>
+        <!-- Pahalgam valley floor -->
+        <rect x="0" y="148" width="300" height="72" fill="#388e3c"/>
+        <!-- Rocks in river -->
+        <ellipse cx="80" cy="228" rx="15" ry="8" fill="#78909c"/>
+        <ellipse cx="200" cy="222" rx="12" ry="7" fill="#90a4ae"/>
+        <ellipse cx="260" cy="234" rx="10" ry="6" fill="#78909c"/>
+        <!-- Shepherd and sheep hint -->
+        <circle cx="160" cy="162" r="4" fill="#f4a261"/>
+        <rect x="157" y="166" width="6" height="10" rx="2" fill="#5c4033"/>
+        <ellipse cx="148" cy="168" rx="5" ry="4" fill="white"/>
+        <ellipse cx="172" cy="170" rx="5" ry="4" fill="white"/>
+        <ellipse cx="185" cy="166" rx="5" ry="4" fill="white"/>
+      </svg>
+      <div class="scene-label">Pahalgam — Valley of Shepherds</div>
+    </div>
+  </div>
+
+  <button class="show-all-btn">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+    Show all photos
+  </button>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="#">Home</a>
+  <span>›</span>
+  <a href="#">Zo Trips</a>
+  <span>›</span>
+  <a href="#">Kashmir</a>
+  <span>›</span>
+  Experience Kashmir
+</div>
+
+<!-- PAGE BODY -->
+<div class="page-body">
+
+  <!-- LEFT COLUMN -->
+  <div class="left-col">
+
+    <!-- TRIP HEADER -->
+    <div class="trip-header">
+      <div class="trip-tags">
+        <span class="tag tag-red">Kashmir</span>
+        <span class="tag tag-blue">Group Trip</span>
+        <span class="tag tag-green">Beginner Friendly</span>
+        <span class="tag tag-purple">Summer Special</span>
+      </div>
+      <h1 class="trip-title">Experience Kashmir</h1>
+      <div class="trip-meta">
+        <div class="trip-meta-item rating">
+          <span class="stars">★★★★★</span>
+          <span>4.9</span>
+          <span style="color:var(--gray); font-weight:400;">(287 reviews)</span>
+        </div>
+        <div class="trip-meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Srinagar · Sonamarg · Gulmarg · Pahalgam
+        </div>
+        <div class="trip-meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          6 Nights / 7 Days
+        </div>
+      </div>
+    </div>
+
+    <!-- QUICK STATS -->
+    <div class="quick-stats">
+      <div class="stat-box">
+        <div class="stat-icon">📅</div>
+        <div class="stat-label">Duration</div>
+        <div class="stat-value">7 Days</div>
+        <div class="stat-sub">6 Nights</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-icon">👥</div>
+        <div class="stat-label">Group Size</div>
+        <div class="stat-value">8–15</div>
+        <div class="stat-sub">People</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-icon">🥾</div>
+        <div class="stat-label">Difficulty</div>
+        <div class="stat-value">Easy</div>
+        <div class="stat-sub">No trekking req.</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-icon">🏔️</div>
+        <div class="stat-label">Max Altitude</div>
+        <div class="stat-value">3,980m</div>
+        <div class="stat-sub">Gulmarg</div>
+      </div>
+    </div>
+
+    <!-- NOTICE -->
+    <div class="notice-banner">
+      <span>ℹ️</span>
+      <div>
+        <strong>Batch:</strong> 21 Jun – 27 Jun 2026 &nbsp;|&nbsp;
+        Reporting point: <strong>Srinagar Airport (SXR)</strong> by 10:00 AM on Day 1.
+        Drop-off at Srinagar Airport / Railway Station on Day 7.
+      </div>
+    </div>
+
+    <!-- TAB NAV -->
+    <div class="tabs-wrap">
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="scrollTo({top:0})">Overview</button>
+        <button class="tab-btn" onclick="document.getElementById('itinerary').scrollIntoView({behavior:'smooth'})">Itinerary</button>
+        <button class="tab-btn" onclick="document.getElementById('inclusions').scrollIntoView({behavior:'smooth'})">Inclusions</button>
+        <button class="tab-btn" onclick="document.getElementById('places').scrollIntoView({behavior:'smooth'})">Places</button>
+        <button class="tab-btn" onclick="document.getElementById('reviews').scrollIntoView({behavior:'smooth'})">Reviews</button>
+        <button class="tab-btn" onclick="document.getElementById('policy').scrollIntoView({behavior:'smooth'})">Policy</button>
+      </div>
+    </div>
+
+    <!-- HIGHLIGHTS -->
+    <div class="section">
+      <h2 class="section-title">✨ Trip Highlights</h2>
+      <div class="highlights-grid">
+        <div class="highlight-card">
+          <div class="highlight-icon">🛶</div>
+          <div>
+            <h4>Shikara Ride on Dal Lake</h4>
+            <p>Glide through the iconic lotus-covered Dal Lake at sunrise in a traditional wooden Shikara boat.</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🚡</div>
+          <div>
+            <h4>Gulmarg Gondola — Asia's Highest</h4>
+            <p>Ride the world-renowned cable car at 3,980m and witness breathtaking snow-clad Himalayan peaks.</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🌸</div>
+          <div>
+            <h4>Tulip Garden Visit</h4>
+            <p>Walk through Asia's largest tulip garden with over a million blooms set against Zabarwan hills.</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🏡</div>
+          <div>
+            <h4>Houseboat Stay on Dal Lake</h4>
+            <p>Spend a magical night aboard a traditional Kashmiri houseboat — a heritage experience unlike any other.</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🏔️</div>
+          <div>
+            <h4>Sonamarg — Meadow of Gold</h4>
+            <p>Explore the stunning glacier meadows of Sonamarg, gateway to Thajiwas Glacier.</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🐑</div>
+          <div>
+            <h4>Pahalgam Valley & Lidder River</h4>
+            <p>Stroll through the Valley of Shepherds, take a pony ride and enjoy the pristine Lidder river banks.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ITINERARY -->
+    <div class="section" id="itinerary">
+      <h2 class="section-title">🗺️ Day-by-Day Itinerary</h2>
+      <div class="itinerary">
+
+        <div class="day-card">
+          <div class="day-left">
+            <div class="day-circle">Day<br>1</div>
+            <div class="day-line"></div>
+          </div>
+          <div class="day-content">
+            <h3>Arrive in Srinagar — The City of Lakes</h3>
+            <div class="day-location">📍 Srinagar</div>
+            <p class="day-description">
+              Arrive at Sheikh ul-Alam International Airport (SXR) and meet your Zo Trip leader. Transfer to your
+              houseboat on Dal Lake — your floating home for the night. In the evening, enjoy a leisurely Shikara
+              ride as the sun dips behind the Pir Panjal range, painting the lake gold. Savor an authentic
+              Wazwan dinner with Rogan Josh, Dum Aloo, and more.
+            </p>
+            <div class="day-activities">
+              <span class="activity-pill">🛬 Airport Pickup</span>
+              <span class="activity-pill">🛶 Shikara Ride</span>
+              <span class="activity-pill">🏡 Houseboat Check-in</span>
+              <span class="activity-pill">🍽️ Welcome Dinner</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-left">
+            <div class="day-circle">Day<br>2</div>
+            <div class="day-line"></div>
+          </div>
+          <div class="day-content">
+            <h3>Srinagar City Tour — Gardens, Markets & Shrines</h3>
+            <div class="day-location">📍 Srinagar</div>
+            <p class="day-description">
+              Start the day with sunrise on Dal Lake. After breakfast, visit the iconic Mughal Gardens —
+              Nishat Bagh (Garden of Bliss) and Shalimar Bagh (Garden of Love) — terraced masterpieces
+              dating to the Mughal era. Head to the Asia's largest tulip garden (seasonal), then explore
+              old Srinagar's bustling Lal Chowk bazaar. Visit Jama Masjid, one of the finest examples of
+              Indo-Saracenic architecture, and the revered Hazratbal Shrine on the banks of Dal Lake.
+            </p>
+            <div class="day-activities">
+              <span class="activity-pill">🌷 Tulip Garden</span>
+              <span class="activity-pill">🏛️ Mughal Gardens</span>
+              <span class="activity-pill">🕌 Hazratbal Shrine</span>
+              <span class="activity-pill">🛍️ Local Market</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-left">
+            <div class="day-circle">Day<br>3</div>
+            <div class="day-line"></div>
+          </div>
+          <div class="day-content">
+            <h3>Sonamarg — The Meadow of Gold</h3>
+            <div class="day-location">📍 Sonamarg (87 km from Srinagar)</div>
+            <p class="day-description">
+              Drive northeast along the Sindh River valley to Sonamarg (2,730m). The road winds through
+              dramatic gorges and dense pine forests. At Sonamarg, take a pony ride or hike to Thajiwas
+              Glacier — a permanent snowfield even in summer. Enjoy Maggi and chai with a glacier backdrop.
+              Return to Srinagar by evening and check into the hotel.
+            </p>
+            <div class="day-activities">
+              <span class="activity-pill">🏔️ Sonamarg Day Trip</span>
+              <span class="activity-pill">🧊 Thajiwas Glacier</span>
+              <span class="activity-pill">🐎 Pony Ride (optional)</span>
+              <span class="activity-pill">🌊 Sindh River</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-left">
+            <div class="day-circle">Day<br>4</div>
+            <div class="day-line"></div>
+          </div>
+          <div class="day-content">
+            <h3>Gulmarg — Asia's Highest Gondola</h3>
+            <div class="day-location">📍 Gulmarg (56 km from Srinagar)</div>
+            <p class="day-description">
+              Drive to Gulmarg (2,650m), known as the "Meadow of Flowers." Take the two-phase Gulmarg Gondola —
+              Phase 1 to Kongdoori (3,080m) and Phase 2 to Apharwat Peak (3,980m) for panoramic views of
+              Nanga Parbat and the Karakoram range. In winter it's a ski resort; in summer the meadows bloom
+              with wildflowers. Stroll along the circular golf course, one of the world's highest. Return
+              to Srinagar overnight.
+            </p>
+            <div class="day-activities">
+              <span class="activity-pill">🚡 Gondola Ride</span>
+              <span class="activity-pill">⛷️ Snow Activities</span>
+              <span class="activity-pill">⛳ Golf Course Walk</span>
+              <span class="activity-pill">📸 Apharwat Peak</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-left">
+            <div class="day-circle">Day<br>5</div>
+            <div class="day-line"></div>
+          </div>
+          <div class="day-content">
+            <h3>Pahalgam — Valley of Shepherds</h3>
+            <div class="day-location">📍 Pahalgam (95 km from Srinagar)</div>
+            <p class="day-description">
+              Drive south through saffron fields and willow-lined roads to Pahalgam (2,130m), the starting point
+              of the Amarnath Yatra. Check in and explore the Betaab Valley (named after the Bollywood film),
+              Aru Valley with its stunning alpine meadows, and Chandanwari. Walk along the Lidder River,
+              crystal clear and glacier-fed. In the evening, gather around a bonfire with your group.
+            </p>
+            <div class="day-activities">
+              <span class="activity-pill">🏞️ Betaab Valley</span>
+              <span class="activity-pill">🌿 Aru Valley</span>
+              <span class="activity-pill">🏄 Lidder River</span>
+              <span class="activity-pill">🔥 Bonfire Night</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-left">
+            <div class="day-circle">Day<br>6</div>
+            <div class="day-line"></div>
+          </div>
+          <div class="day-content">
+            <h3>Pahalgam Exploration & Return to Srinagar</h3>
+            <div class="day-location">📍 Pahalgam → Srinagar</div>
+            <p class="day-description">
+              Free morning in Pahalgam — explore local shops for Kashmiri saffron, pashmina shawls, and walnut
+              wood crafts. Optional white-water rafting on the Lidder River (Grade I–II). Post-lunch, drive back
+              to Srinagar. Evening at leisure at Dal Lake — try a solo Shikara or browse the floating market.
+              Group dinner at a traditional Kashmiri restaurant.
+            </p>
+            <div class="day-activities">
+              <span class="activity-pill">🛶 Floating Market</span>
+              <span class="activity-pill">🌊 Rafting (optional)</span>
+              <span class="activity-pill">🧣 Pashmina Shopping</span>
+              <span class="activity-pill">🍛 Kashmiri Dinner</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-left">
+            <div class="day-circle">Day<br>7</div>
+          </div>
+          <div class="day-content">
+            <h3>Departure — Until Next Time, Kashmir</h3>
+            <div class="day-location">📍 Srinagar</div>
+            <p class="day-description">
+              After breakfast, the trip officially concludes. Transfer to Srinagar Airport or Railway Station
+              (Sheikh ul-Alam International Airport / Nowgam Railway Station) as per your onward travel plans.
+              Carry home memories, a heart full of mountains, and probably too much saffron.
+            </p>
+            <div class="day-activities">
+              <span class="activity-pill">🛫 Airport Drop</span>
+              <span class="activity-pill">☕ Farewell Breakfast</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- INCLUSIONS / EXCLUSIONS -->
+    <div class="section" id="inclusions">
+      <h2 class="section-title">📋 Inclusions & Exclusions</h2>
+      <div class="inc-exc">
+        <div class="inc-box">
+          <h4>✓ What's Included</h4>
+          <ul class="inc-list">
+            <li>Accommodation for 6 nights (hotels + 1 night houseboat)</li>
+            <li>All meals — breakfast and dinner daily</li>
+            <li>Private tempo traveller / SUV transportation throughout</li>
+            <li>Airport & railway station pickup and drop</li>
+            <li>Shikara ride on Dal Lake (group)</li>
+            <li>Gulmarg Gondola — Phase 1 ticket</li>
+            <li>Tulip Garden entry (if in season)</li>
+            <li>All Mughal Gardens entry fees</li>
+            <li>Experienced Zo Trip leader</li>
+            <li>All inner-line permits and government fees</li>
+            <li>First-aid kit & trip insurance</li>
+          </ul>
+        </div>
+        <div class="exc-box">
+          <h4>✕ What's Not Included</h4>
+          <ul class="exc-list">
+            <li>Flights / trains to/from Srinagar</li>
+            <li>Gulmarg Gondola Phase 2 ticket (₹900 approx.)</li>
+            <li>Pony / horse rides at Sonamarg or Pahalgam</li>
+            <li>White-water rafting (optional add-on)</li>
+            <li>Lunches on the road</li>
+            <li>Personal expenses, tips, laundry</li>
+            <li>Travel insurance (personal)</li>
+            <li>Any activity not mentioned in inclusions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLACES -->
+    <div class="section" id="places">
+      <h2 class="section-title">📍 Places You'll Visit</h2>
+      <div class="places-grid">
+        <div class="place-card">
+          <div class="place-bg" style="background:linear-gradient(135deg,#1a3a5c,#2d6a9f);">🌊</div>
+          <div class="place-overlay">
+            <h4>Dal Lake</h4>
+            <p>Srinagar · Houseboats & Shikaras</p>
+          </div>
+        </div>
+        <div class="place-card">
+          <div class="place-bg" style="background:linear-gradient(135deg,#1b4f2a,#3a7d1e);">🏔️</div>
+          <div class="place-overlay">
+            <h4>Sonamarg</h4>
+            <p>2,730m · Thajiwas Glacier</p>
+          </div>
+        </div>
+        <div class="place-card">
+          <div class="place-bg" style="background:linear-gradient(135deg,#0a2744,#c0392b);">🚡</div>
+          <div class="place-overlay">
+            <h4>Gulmarg</h4>
+            <p>3,980m · Asia's Highest Gondola</p>
+          </div>
+        </div>
+        <div class="place-card">
+          <div class="place-bg" style="background:linear-gradient(135deg,#4a3018,#8b6040);">🌿</div>
+          <div class="place-overlay">
+            <h4>Pahalgam</h4>
+            <p>2,130m · Valley of Shepherds</p>
+          </div>
+        </div>
+        <div class="place-card">
+          <div class="place-bg" style="background:linear-gradient(135deg,#2e0854,#7c3aed);">🌷</div>
+          <div class="place-overlay">
+            <h4>Mughal Gardens</h4>
+            <p>Srinagar · Nishat & Shalimar</p>
+          </div>
+        </div>
+        <div class="place-card">
+          <div class="place-bg" style="background:linear-gradient(135deg,#1c3a2e,#388e3c);">🌊</div>
+          <div class="place-overlay">
+            <h4>Betaab Valley</h4>
+            <p>Pahalgam · Aru · Chandanwari</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REVIEWS -->
+    <div class="section" id="reviews">
+      <div class="reviews-header">
+        <h2 class="section-title" style="border:none;margin:0;padding:0;">⭐ Traveller Reviews</h2>
+        <span style="font-size:13px; color:var(--gray);">287 reviews</span>
+      </div>
+
+      <div class="reviews-summary">
+        <div class="big-rating">
+          <div class="score">4.9</div>
+          <div class="stars" style="font-size:18px;">★★★★★</div>
+          <div class="out-of">out of 5</div>
+        </div>
+        <div class="rating-bars">
+          <div class="rating-row">
+            <span class="label">Itinerary</span>
+            <div class="bar-bg"><div class="bar-fill" style="width:96%"></div></div>
+            <span class="pct">4.8</span>
+          </div>
+          <div class="rating-row">
+            <span class="label">Trip Leader</span>
+            <div class="bar-bg"><div class="bar-fill" style="width:98%"></div></div>
+            <span class="pct">4.9</span>
+          </div>
+          <div class="rating-row">
+            <span class="label">Stays</span>
+            <div class="bar-bg"><div class="bar-fill" style="width:94%"></div></div>
+            <span class="pct">4.7</span>
+          </div>
+          <div class="rating-row">
+            <span class="label">Food</span>
+            <div class="bar-bg"><div class="bar-fill" style="width:98%"></div></div>
+            <span class="pct">4.9</span>
+          </div>
+          <div class="rating-row">
+            <span class="label">Value</span>
+            <div class="bar-bg"><div class="bar-fill" style="width:96%"></div></div>
+            <span class="pct">4.8</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-cards">
+        <div class="review-card">
+          <div class="reviewer">
+            <div class="avatar" style="background:#e63329;">P</div>
+            <div>
+              <div class="reviewer-name">Priya Sharma</div>
+              <div class="reviewer-date">May 2025 · Mumbai</div>
+            </div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">
+            Absolutely magical trip! The houseboat experience on Dal Lake was beyond anything I imagined —
+            waking up to misty mountains reflecting on the water. Our trip leader Aarav was incredible,
+            he knew every hidden corner of Kashmir. The food was outstanding — authentic Wazwan that I'll
+            dream about forever. Highly recommend to anyone wanting a seamless Kashmir experience!
+          </p>
+        </div>
+
+        <div class="review-card">
+          <div class="reviewer">
+            <div class="avatar" style="background:#7c3aed;">R</div>
+            <div>
+              <div class="reviewer-name">Rohan Mehra</div>
+              <div class="reviewer-date">April 2025 · Bengaluru</div>
+            </div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">
+            Went solo and came back with 14 new friends. That's the Zo Trips magic! Gulmarg Gondola was
+            absolutely stunning — Phase 2 views of Nanga Parbat genuinely took my breath away (literally,
+            altitude hit hard 😅). Pahalgam's Betaab Valley is like something from a dream. The group
+            bonfire night there was unforgettable. Will be back for the winter edition.
+          </p>
+        </div>
+
+        <div class="review-card">
+          <div class="reviewer">
+            <div class="avatar" style="background:#16a34a;">A</div>
+            <div>
+              <div class="reviewer-name">Anjali & Vikram</div>
+              <div class="reviewer-date">June 2024 · Delhi</div>
+            </div>
+          </div>
+          <div class="review-stars">★★★★☆</div>
+          <p class="review-text">
+            We did this for our honeymoon and it was perfect. The houseboat on Dal Lake alone is worth the
+            price of the whole trip. Sonamarg was breathtakingly beautiful. Minor point — the Gondola queue
+            was long, but the views on top made it completely worth it. The itinerary is well-paced,
+            never feels rushed. Kashmiri food was phenomenal throughout.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- POLICY -->
+    <div class="section" id="policy">
+      <h2 class="section-title">📜 Policies</h2>
+      <div class="policy-grid">
+        <div class="policy-card">
+          <div class="policy-icon">💰</div>
+          <h4>Cancellation Policy</h4>
+          <p>Full refund if cancelled 30+ days before. 50% refund 15–30 days. No refund within 15 days of trip.</p>
+        </div>
+        <div class="policy-card">
+          <div class="policy-icon">🔄</div>
+          <h4>Rescheduling</h4>
+          <p>Free rescheduling once up to 20 days before the trip. Subject to availability of alternate batches.</p>
+        </div>
+        <div class="policy-card">
+          <div class="policy-icon">🏥</div>
+          <h4>Medical & Safety</h4>
+          <p>Trip leader carries first-aid kit. Basic altitude precautions advised. Medical fitness required.</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end left-col -->
+
+  <!-- RIGHT COLUMN — BOOKING CARD -->
+  <div class="right-col">
+    <div class="booking-card">
+      <div class="booking-card-header">
+        <div class="batch-label">Upcoming Batch</div>
+        <div class="batch-dates">21 Jun – 27 Jun 2026</div>
+        <div class="batch-nights">7 Days · 6 Nights</div>
+        <div class="seats-row">
+          <div class="seats-dot"></div>
+          <span><strong>4 seats left</strong> — filling fast!</span>
+        </div>
+      </div>
+
+      <div class="booking-body">
+        <div class="price-row">
+          <span class="price-label">Price per person</span>
+          <span class="price-original">₹22,999</span>
+        </div>
+        <div style="display:flex; align-items:baseline; gap:6px;">
+          <span class="price-current">₹17,999</span>
+          <span class="price-per">/ person</span>
+        </div>
+        <div class="price-savings">🎉 Save ₹5,000 — Early Bird Offer</div>
+
+        <hr class="divider" />
+
+        <div class="cost-breakdown">
+          <div class="cost-row">
+            <span>Base price</span>
+            <span>₹15,999</span>
+          </div>
+          <div class="cost-row">
+            <span>Gondola + Entries</span>
+            <span>₹1,200</span>
+          </div>
+          <div class="cost-row">
+            <span>GST (5%)</span>
+            <span>₹800</span>
+          </div>
+          <div class="cost-row total">
+            <span>Total</span>
+            <span>₹17,999</span>
+          </div>
+        </div>
+
+        <button class="book-btn">Book Now — Pay ₹5,000 to Secure</button>
+        <div class="book-note">
+          🔒 Secure checkout &nbsp;·&nbsp; No spam, ever
+        </div>
+
+        <button class="inquiry-btn">💬 Have questions? Chat with us</button>
+
+        <div class="features-list">
+          <div class="feature-item">
+            <span class="feature-icon">✅</span>
+            <span>Free cancellation up to 30 days before</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🔄</span>
+            <span>1 free reschedule up to 20 days before</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🧳</span>
+            <span>Solo travellers welcome</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🌿</span>
+            <span>Responsible, sustainable travel</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🏅</span>
+            <span>Expert Kashmiri guides included</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end page-body -->
+
+<!-- MOBILE STICKY BAR -->
+<div class="mobile-bar">
+  <div>
+    <div class="mobile-price">₹17,999 <span>/ person</span></div>
+    <div style="font-size:12px; color:var(--gray);">21–27 Jun 2026 · 4 seats left</div>
+  </div>
+  <button class="btn btn-primary" style="font-size:15px; padding:12px 24px;">Book Now</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Zostel</div>
+  <p>Making travel social since 2013 · India's largest backpacker hostel chain</p>
+  <p style="margin-top:8px;">
+    <a href="#">About Us</a> &nbsp;·&nbsp;
+    <a href="#">Contact</a> &nbsp;·&nbsp;
+    <a href="#">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="#">Terms of Service</a>
+  </p>
+</footer>
+
+<script>
+  // Tab active state on scroll
+  const sections = ['itinerary', 'inclusions', 'places', 'reviews', 'policy'];
+  const tabBtns = document.querySelectorAll('.tab-btn');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 120) current = id;
+    });
+    tabBtns.forEach((btn, i) => {
+      btn.classList.toggle('active', i === 0 && !current || btn.onclick?.toString().includes(current));
+    });
+  });
+</script>
+
+</body>
+</html>
